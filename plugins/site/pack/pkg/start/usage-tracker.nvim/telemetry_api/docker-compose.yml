@@ -1,0 +1,13 @@
+version: '3'
+services:
+  restapi:
+    image: usage-tracker-restapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8999:8000
+    volumes:
+      - ./sqlite_db:/app/data
+    restart: always
+

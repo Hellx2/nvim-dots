@@ -20,15 +20,13 @@
 (keyword_argument_key) @variable.parameter
 
 (call
-  caller:
-    (reference
-      (nested_identifier
-        property: (member_identifier) @function.method.call)))
+  caller: (reference
+    (nested_identifier
+      property: (member_identifier) @function.method.call)))
 
 (call
-  caller:
-    (reference
-      (reference_identifier) @function.method.call))
+  caller: (reference
+    (reference_identifier) @function.method.call))
 
 ; Primitives
 (number) @number
@@ -96,5 +94,11 @@
   "if"
   "else"
 ] @keyword.conditional
+
+[
+  "pub"
+  "protected"
+  "internal"
+] @keyword.modifier
 
 "return" @keyword.return

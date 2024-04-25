@@ -72,7 +72,8 @@
 
 (emit_statement
   .
-  (identifier) @type)
+  (expression
+    (identifier)) @type)
 
 ; Handles ContractA, ContractB in function foo() override(ContractA, contractB) {}
 (override_specifier
@@ -97,20 +98,22 @@
 ; Handles expressions like structVariable.g();
 (call_expression
   .
-  (member_expression
-    (identifier) @function.method.call))
+  (expression
+    (member_expression
+      (identifier) @function.method.call)))
 
 ; Handles expressions like g();
 (call_expression
   .
-  (identifier) @function.call)
+  (expression
+    (identifier) @function.call))
 
 ; Function parameters
-(event_paramater
-  name: (identifier) @variable.parameter)
+(event_parameter
+  name: (_) @variable.parameter)
 
 (parameter
-  name: (identifier) @variable.parameter)
+  name: (_) @variable.parameter)
 
 ; Yul functions
 (yul_function_call
@@ -126,10 +129,10 @@
   "type" @keyword)
 
 (member_expression
-  property: (identifier) @variable.member)
+  property: (_) @variable.member)
 
 (call_struct_argument
-  name: (identifier) @variable.member)
+  name: (_) @variable.member)
 
 (struct_field_assignment
   name: (identifier) @variable.member)
@@ -160,7 +163,7 @@
 
 ; FIXME: update grammar
 ; (block_statement "unchecked" @keyword)
-(event_paramater
+(event_parameter
   "indexed" @keyword)
 
 [

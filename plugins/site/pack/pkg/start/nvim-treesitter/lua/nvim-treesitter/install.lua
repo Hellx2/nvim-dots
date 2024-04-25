@@ -360,9 +360,9 @@ local function run_install(cache_folder, install_folder, lang, repo, with_sync, 
     if not M.ts_generate_args then
       local ts_cli_version = utils.ts_cli_version()
       if ts_cli_version and vim.split(ts_cli_version, " ")[1] > "0.20.2" then
-        M.ts_generate_args = { "generate", "--abi", vim.treesitter.language_version }
+        M.ts_generate_args = { "generate", "--no-bindings", "--abi", vim.treesitter.language_version }
       else
-        M.ts_generate_args = { "generate" }
+        M.ts_generate_args = { "generate", "--no-bindings" }
       end
     end
   end
@@ -526,6 +526,7 @@ local function install(options)
     if err then
       return api.nvim_err_writeln(err)
     end
+    install_folder = install_folder and clean_path(install_folder)
     assert(install_folder)
 
     local languages ---@type string[]
@@ -621,6 +622,7 @@ function M.uninstall(...)
       if err then
         return api.nvim_err_writeln(err)
       end
+      install_dir = install_dir and clean_path(install_dir)
 
       if vim.tbl_contains(ensure_installed_parsers, lang) then
         vim.notify(

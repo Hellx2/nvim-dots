@@ -1,0 +1,22 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "plugins": [
+        "otter.nvim",
+        "nvim-lspconfig",
+        "lsp",
+      ]
+    }
+  },
+  "neoconf": {
+    "plugins": {
+      "sumneko_lua": {
+        "enabled": true
+      },
+    }
+  },
+  "lspconfig": {
+    "sumneko_lua": {}
+  }
+}

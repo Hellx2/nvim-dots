@@ -1,0 +1,4 @@
+doc/tags
+result/
+.direnv
+.luarc.json
